@@ -4,15 +4,21 @@ html {
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow-x: hidden;
+
+  /* -ms-overflow-style: none; */
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 /* ------------------- .Allpage (각 페이지) ------------------- */
 .Allpage_right, .Allpage_left {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -23,7 +29,7 @@ body {
   content: "";
   position: absolute;
   top: 0;
-  right: 40px;
+  right: 30px;
   bottom: 0;
 
   border-right: 1px solid #1c1c1c;
@@ -34,13 +40,36 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 20px;
+  left: 30px;
 
   border-left: 1px solid #1c1c1c;
 }
 
 #color {
   background-color: pink;
+}
+
+/* 하단 우측 고정 -> 페이지 상단으로 이동 버튼 */
+button {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	
+	cursor: pointer;
+}
+
+.mark {
+  width: 80px;
+  height: 80px;
+  
+  position: fixed;
+  right: 45px;
+  bottom: 20px;
+
+  background-image: url(../images/mark.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 /* ------------------- nav (상단고정) ------------------- */
@@ -347,7 +376,7 @@ body {
 
 .titleLineLeft {
   width: 700px;
-  height: 0.5px;
+  height: 1px;
   background-color: #1c1c1c;
 
   position: absolute;
@@ -357,7 +386,7 @@ body {
 
 .titleLineRight {
   width: 700px;
-  height: 0.5px;
+  height: 1px;
   background-color: #1c1c1c;
 
   position: absolute;
@@ -424,6 +453,7 @@ body {
   display: flex;
   justify-content: center;
   position: relative;
+  cursor: pointer;
 }
 
 .left_contents, .right_contents {
@@ -487,7 +517,7 @@ body {
   transform: translate(-50%, -50%);
   width: 410px;
 
-  z-index: 2;
+  z-index: 3;
 
   /* 동작 후 나타날 이미지이므로 숨겨둔다 ! */
   opacity: 0;
@@ -548,6 +578,88 @@ body {
   z-index: 3;
 }
 
+#title_left.on01 {
+  left: -420px;
+  transition-duration: 800ms;
+}
+
+.titleLineLeft.on02 {
+  width: 0;
+  transition-duration: 1000ms;
+}
+
+.on03 {
+  left: -145px;
+  text-align: left;
+  transition-duration: 500ms;
+}
+
+.on04 {
+  left: -50px;
+  text-align: left;
+  transition-duration: 500ms;
+}
+
+.on05 {
+  opacity: 0;
+  transition-duration: 500ms;
+}
+
+#title_right.on06 {
+  right: -420px;
+  transition-duration: 500ms;
+}
+
+.titleLineRight.on07 {
+  width: 0;
+  transition-duration: 1000ms;
+}
+
+.on08 {
+  right: -100px;
+  text-align: right;
+  transition-duration: 500ms;
+}
+
+.on09_1 {
+  opacity: 0;
+  transition-duration: 650ms;
+}
+
+.on09_2 {
+  opacity: 0;
+  transition-duration: 650ms;
+}
+
+.middleLineLeft.on10 {
+  top: -230px;
+  left: -100px;
+  height: 750px;
+  transition-duration: 300ms;
+}
+
+.middleLineRight.on11 {
+  top: -230px;
+  right: -100px;
+  height: 750px;
+  transition-duration: 300ms;
+}
+
+.middleLineBottom.on12 {
+  opacity: 0;
+}
+
+#middle_contents > img:nth-child(1).on13 {
+  opacity: 0;
+  transition-duration: 800ms;
+}
+
+#middle_contents > img:nth-child(2).on14 {
+  opacity: 1;
+  transition-duration: 2000ms;
+  z-index: 3;
+}
+
 /* ------------------- page 03 ------------------- */
 /* text */
 #p3_title {
@@ -591,9 +703,9 @@ body {
 #p3_contents_02_motion {
   position: absolute;
   bottom: 0.5%;
-  right: 19%;
+  right: 8%;
   text-align: right;
-  display: none;
+  opacity: 0;
 }
 
 #p3_contents_01 > strong, #p3_contents_02 > strong, #p3_contents_02_motion > p > strong {
@@ -615,10 +727,8 @@ body {
 
 #polar_photo > li:nth-child(1) {
   position: absolute;
-  top: 30%;
+  top: 240px;
   left: 0;
-  /* opacity: 0; */
-
 }
 
 #polar_photo > li:nth-child(1) > img {
@@ -627,9 +737,8 @@ body {
 
 #polar_photo > li:nth-child(2) {
   position: absolute;
-  top: 2%;
-  left: 16%;
-  /* opacity: 0; */
+  top: 20px;
+  left: 265px;
 }
 
 #polar_photo > li:nth-child(2) > img {
@@ -638,9 +747,8 @@ body {
 
 #polar_photo > li:nth-child(3) {
   position: absolute;
-  top: 20%;
-  left: 36%;
-  /* opacity: 0; */
+  top: 160px;
+  left: 595px;
 }
 
 #polar_photo > li:nth-child(3) > img {
@@ -649,9 +757,8 @@ body {
 
 #polar_photo > li:nth-child(4) {
   position: absolute;
-  top: 27.5%;
-  right: 18%;
-  /* opacity: 0; */
+  top: 220px;
+  right: 295px;
 }
 
 #polar_photo > li:nth-child(4) > img {
@@ -660,9 +767,8 @@ body {
 
 #polar_photo > li:nth-child(5) {
   position: absolute;
-  top: 10%;
+  top: 80px;
   right: 0;
-  /* opacity: 0; */
 }
 
 #polar_photo > li:nth-child(5) > img {
@@ -695,6 +801,11 @@ body {
   z-index: 3;
 }
 
+.p3Line_on01 {
+  width: 180px;
+  transition-duration: 500ms;
+}
+
 .p3Line02 {
   position: absolute;
   top: 0px;
@@ -704,6 +815,11 @@ body {
   background-color: #1c1c1c;
 
   z-index: 3;
+}
+
+.p3Line_on02 {
+  height: 378px;
+  transition-duration: 500ms;
 }
 
 .p3Line03 {
@@ -717,6 +833,11 @@ body {
   z-index: 3;
 }
 
+.p3Line_on03 {
+  width: 250px;
+  transition-duration: 500ms;
+}
+
 .p3Line04 {
   position: absolute;
   top: 378px;
@@ -726,6 +847,11 @@ body {
   background-color: #1c1c1c;
 
   z-index: 3;
+}
+
+.p3Line_on04 {
+  height: 181px;
+  transition-duration: 500ms;
 }
 
 .p3Line05 {
@@ -739,6 +865,11 @@ body {
   z-index: 3;
 }
 
+.p3Line_on05 {
+  width: 1121px;
+  transition-duration: 500ms;
+}
+
 .p3Line06 {
   position: absolute;
   top: 465px;
@@ -748,6 +879,11 @@ body {
   background-color: #1c1c1c;
 
   z-index: 3;
+}
+
+.p3Line_on06 {
+  width: 276px;
+  transition-duration: 500ms;
 }
 
 .p3Line07 {
@@ -761,15 +897,25 @@ body {
   z-index: 3;
 }
 
+.p3Line_on07 {
+  height: 299px;
+  transition-duration: 500ms;
+}
+
 .p3Line08 {
   position: absolute;
   top: 763px;
-  right: 673px;
+  right: 671px;
   width: 0px;
   height: 1px;
   background-color: #1c1c1c;
 
   z-index: 3;
+}
+
+.p3Line_on08 {
+  width: 80px;
+  transition-duration: 500ms;
 }
 
 .p3Line09 {
@@ -781,6 +927,11 @@ body {
   background-color: #1c1c1c;
 
   z-index: 3;
+}
+
+.p3Line_on09 {
+  height: 140px;
+  transition-duration: 500ms;
 }
 
 /* ------------------- footer ------------------- */
@@ -802,8 +953,8 @@ body {
 #ft_container > img {
   display: block;
   padding-bottom: 20px;
-
 }
+
 #info_container {
   display: flex;
   justify-content: space-between;
