@@ -50,14 +50,6 @@ body {
 }
 
 /* 하단 우측 고정 -> 페이지 상단으로 이동 버튼 */
-button {
-	background-color: transparent;
-	border: none;
-	padding: 0;
-	
-	cursor: pointer;
-}
-
 .mark {
   width: 80px;
   height: 80px;
@@ -70,6 +62,8 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+
+  cursor: pointer;
 }
 
 /* ------------------- nav (상단고정) ------------------- */
@@ -117,10 +111,10 @@ button {
 }
 
 #nav > ul > li > a:hover {
-  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(255, 255, 255, 0.081);
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  text-shadow: -2px 1px 0px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(255, 255, 255, 0.2);
+  text-shadow: -2px 1px 0px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(255, 255, 255, 0.526);
 }
 
 /* nav 상단 컨텐츠 숨기기 위해서 추가한 가상요소 */
@@ -792,7 +786,7 @@ button {
 /* 라인 */
 .p3Line01 {
   position: absolute;
-  top: 0px;
+  top: 5px;
   right: 1275px;
   width: 0;
   height: 1px;
@@ -808,7 +802,7 @@ button {
 
 .p3Line02 {
   position: absolute;
-  top: 0px;
+  top: 5px;
   left: 195px;
   width: 1px;
   height: 0;
@@ -818,7 +812,7 @@ button {
 }
 
 .p3Line_on02 {
-  height: 378px;
+  height: 373px;
   transition-duration: 500ms;
 }
 

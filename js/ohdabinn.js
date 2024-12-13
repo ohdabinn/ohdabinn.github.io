@@ -1,30 +1,45 @@
 $(function () {
 
+  // 키보드 스크롤 이동 동작 제어
+  $(document).keydown(function(event){
+    if(event.keyCode == 38 || event.keyCode == 40){
+      console.log(event);
+      event.preventDefault();
+    }
+  });
+
+  // 마우스 컨트롤 제어
+  $(document).ready(function(){
+    control_mouse();
+  });
+
   const $html = $('html');
   const $window = $(window);
+  let pageIndex = 0;
 
   // 페이지 최상단으로 이동하는 버튼
   const $mark = $('<a href="#"></a>').appendTo('#nav').addClass('mark');
 
-  $(".mark").on('click', function(){
-    $html.animate({ scrollTop: 0 }, 500 );
+  $mark.on('click', function(){
+    pageIndex = 0;
+    $html.animate({ scrollTop: 0 }, 400 );
     return false;
   });
-  
+
   history.scrollRestoration = "manual";
 
   let windowHeight = $window.height();
-  let pageIndex = 0;
-
+ 
   console.log('LOAD: pageIndex = ' + pageIndex);
 
   $html.animate({ scrollTop: pageIndex * windowHeight}, 10);
   const lastPageIndex = $('.Allpage').length;
 
-  $html.animate({ scrollTop: 0 }, 10);
+  $html.animate({ scrollTop: 0 }, 50);
 
   page01();
 
+  // 페이지 스크롤링
   window.addEventListener('wheel', function (event) {
     event.preventDefault();
 
@@ -81,6 +96,14 @@ $(function () {
     $html.animate({ scrollTop: 0}, 10);
   });
 
+  // ★★ function ★★ //
+
+  function control_mouse(){
+    // 마우스 우 클릭 금지
+    $(document).bind("contextmenu", function(e){return false;});
+    // 드래그 클릭 금지
+    $(document).bind('selectstart', function() {return false;});
+  }
 
   function page01 () {
     // Page_01: 동작(1)
@@ -207,11 +230,8 @@ $(function () {
         width: 200
       }, 1000);
     }, 17500);
-
-    
   }
   
-
   // Page_02 동작
   function page02 () {
     // 옷핀 요소 추가
@@ -384,7 +404,7 @@ $(function () {
           top: 230,
         }, 1000, polarPhoto01())
       });
-    }, 900);
+    }, 600);
   
     window.setTimeout(function polarPhoto02() {
       $polarPhoto.children(':nth-child(2)').animate({
@@ -394,7 +414,7 @@ $(function () {
           top: 10,
         }, 1200, polarPhoto02())
       });
-    }, 1000)
+    }, 650)
   
     
     window.setTimeout(function polarPhoto03() {
@@ -405,7 +425,7 @@ $(function () {
           top: 150,
         }, 1200, polarPhoto03())
       });
-    }, 1100)
+    }, 700)
   
     window.setTimeout(function polarPhoto04() {
       $polarPhoto.children(':nth-child(4)').animate({
@@ -415,7 +435,7 @@ $(function () {
           top: 210,
         }, 1200, polarPhoto04())
       });
-    }, 1000)
+    }, 650)
   
     window.setTimeout(function polarPhoto05() {
       $polarPhoto.children(':nth-child(5)').animate({
@@ -425,7 +445,7 @@ $(function () {
           top: 70,
         }, 1000, polarPhoto05())
       });
-    }, 900)
+    }, 600)
   
     // 하단 우측 텍스트 움직임
     window.setTimeout(function () {
@@ -438,6 +458,6 @@ $(function () {
           opacity: 1
         }, 1400)
       });
-    }, 4500);
+    }, 5500);
   }
 });

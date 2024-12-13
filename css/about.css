@@ -18,6 +18,23 @@ body {
   box-sizing: border-box;
 }
 
+/* 하단 우측 고정 -> 페이지 상단으로 이동 버튼 */
+.mark {
+  width: 80px;
+  height: 80px;
+  
+  position: fixed;
+  right: 45px;
+  bottom: 20px;
+
+  background-image: url(../images/mark.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  cursor: pointer;
+}
+
 /* ------------------- nav (상단고정) ------------------- */
 #nav {
   width: 100%;
@@ -63,10 +80,10 @@ body {
 }
 
 #nav > ul > li > a:hover {
-  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.4), 0px 3px 0px rgba(255, 255, 255, 0.081);
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  text-shadow: -2px 1px 0px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(255, 255, 255, 0.2);
+  text-shadow: -2px 1px 0px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(255, 255, 255, 0.526);
 }
 
 /* nav 상단 컨텐츠 숨기기 위해서 추가한 가상요소 */
@@ -120,27 +137,36 @@ body {
 
 #p1_container_01 > div > h4 {
   position: absolute;
-  top: 125px;
-  right: 8px;
+  top: 120px;
+  left: 680px;
 
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 300;
   letter-spacing: 1px;
+  width: 200px;
+
+  opacity: 0;
 }
 
 #p1_container_01 > div > h4 > strong {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 500;
 }
 
-#p1_container_01 > div > p {
+#p1_container_01 > div > ul {
   position: absolute;
-  bottom: 62px;
-  right: -90px;
+  bottom: 55px;
+  left: 925px;
 
-  font-size: 13px;
+  width: 100px;
+}
+
+#p1_container_01 > div > ul > li {
+  font-size: 15px;
   font-weight: 200;
   line-height: 1.5;
+
+  opacity: 0;
 }
 
 /* 시계 gif */
@@ -165,7 +191,7 @@ body {
 #p1_container_02 > h4 {
   position: absolute;
   top: 20px;
-  right: 0;
+  right: 30px;
 
   font-size: 16px;
   font-weight: 300;
@@ -177,15 +203,12 @@ body {
   font-weight: 500;
 }
 
-
-
 #p1_container_02 > img {
   display: block;
   width: 100%;
   height: 100%;
   /* background-color: darksalmon; */
 }
-
 
 /* ------------------- page 02 ------------------- */
 /* 동작 전 */
@@ -379,10 +402,20 @@ body {
 }
 
 .left_program > div:nth-child(2) > ul > li > div > h4 {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-align: left;
+
+  margin-top: 8px;
+}
+
+#premEffects > h4 {
+  margin-top: 3px;
+}
+
+#premEffects > h4:nth-child(1) {
+  margin-top: 7px;
 }
 
 /* 프로그램_오른쪽 */
@@ -414,11 +447,12 @@ body {
 }
 
 #right_program_detail > ul > li > div > h4 {
-  margin-top: 8px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-align: right;
+
+  margin-top: 15px;
 }
 
 /* 자격증_오른쪽 */
@@ -446,6 +480,102 @@ body {
   border-bottom: 1px solid #1c1c1c;
   box-sizing: border-box;
 }
+
+/* 프로그램 circle */
+.boxFlex {
+  display: flex;
+  gap: 7px;
+
+  margin-top: 8px;
+}
+
+.non {
+  width: 10px;
+  height: 10px;
+  background-color: #dde1e4;
+  border-radius: 50%;
+  z-index: 3;
+  opacity: 0;
+}
+
+.Pon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #31a8ff;
+  border-radius: 50%;
+  z-index: 3;
+  opacity: 0;
+}
+
+.Aon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #ff9a00;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.Ion {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #ff3366;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.PWon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #da4426;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.Eon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #20a164;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.Won {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #017ed9;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.PAon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #afafff;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.Webon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #1c1c1c;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.both > div {
+  margin-left: 35px;
+  margin-top: 13px;
+}
+
 
 /* ------------------- page 03 (1) ------------------- */
 #p3_motion_01 {
