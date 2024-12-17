@@ -35,6 +35,10 @@ body {
   cursor: pointer;
 }
 
+.color {
+  background-color: gray;
+}
+
 /* ------------------- nav (상단고정) ------------------- */
 #nav {
   width: 100%;
@@ -99,7 +103,7 @@ body {
 }
 
 /* 페이지 container -> 고정된 사이즈 */
-.container {
+.container { 
   width: 1650px;
   height: 800px;
   position: absolute;
@@ -211,7 +215,7 @@ body {
 }
 
 /* ------------------- page 02 ------------------- */
-/* 동작 전 */
+/* 동작 (1) */
 #p2_preContainer {
   /* background-color: green; */
   width: 800px;
@@ -221,8 +225,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  display: none;
 }
 
 #p2_preContainer > div {
@@ -234,6 +236,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
 #p2_preContainer > div > h2 {
@@ -241,13 +244,49 @@ body {
   font-weight: 800;
   font-size: 57px;
   flex-basis: content;
+  /* display: none; */
+}
+
+/* javaScript에서 추가한 <span> 요소 스타일*/
+.spanStyle {
+  text-align: center;
+  font-weight: 800;
+  font-size: 57px;
+
+  /* 쌤이 알려주신대로 하면 position: relative */
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #p2_preContainer > div > h2:nth-child(2) {
   margin: 0 10px;
 }
 
-/* 동작 후 */
+.longBoxLeft {
+  display: block;
+  width: 425px;
+  height: 0;
+  background-color: hsl(14, 96%, 59%);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.longBoxRight {
+  display: block;
+  width: 325px;
+  height: 0;
+  background-color: #ece1cf;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* 동작 (2)) */
 #p2_container {
   /* background-color: lightpink; */
   position: absolute;
@@ -261,6 +300,8 @@ body {
 
   overflow: hidden;
   padding: 0 60px;
+
+  display: none;
 }
 
 .p2_contents_container {
@@ -515,6 +556,7 @@ body {
   background-color: #ff9a00;
   border-radius: 50%;
   z-index: 3;
+  opacity: 0;
 }
 
 .Ion {
@@ -524,6 +566,7 @@ body {
   background-color: #ff3366;
   border-radius: 50%;
   z-index: 3;
+  opacity: 0;
 }
 
 .PWon {
@@ -533,6 +576,7 @@ body {
   background-color: #da4426;
   border-radius: 50%;
   z-index: 3;
+  opacity: 0;
 }
 
 .Eon {
@@ -542,6 +586,7 @@ body {
   background-color: #20a164;
   border-radius: 50%;
   z-index: 3;
+  opacity: 0;
 }
 
 .Won {
@@ -551,6 +596,7 @@ body {
   background-color: #017ed9;
   border-radius: 50%;
   z-index: 3;
+  opacity: 0;
 }
 
 .PAon {
@@ -560,6 +606,7 @@ body {
   background-color: #afafff;
   border-radius: 50%;
   z-index: 3;
+  opacity: 0;
 }
 
 .Webon {
@@ -569,6 +616,7 @@ body {
   background-color: #1c1c1c;
   border-radius: 50%;
   z-index: 3;
+  opacity: 0;
 }
 
 .both > div {
