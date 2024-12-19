@@ -13,6 +13,13 @@ $(function () {
     control_mouse();
   });
 
+  function control_mouse(){
+    // 마우스 우 클릭 금지
+    $(document).bind("contextmenu", function(e){return false;});
+    // 드래그 클릭 금지
+    $(document).bind('selectstart', function() {return false;});
+  }
+
   const $html = $('html');
   const $window = $(window);
   let pageIndex = 0;
@@ -26,6 +33,7 @@ $(function () {
     return false;
   });
 
+  /* ---------------------------------- */
   history.scrollRestoration = "manual";
 
   let windowHeight = $window.height();
@@ -80,7 +88,7 @@ $(function () {
           break;
         default:
       }
-    }
+    };
 
     const posTop = windowHeight * pageIndex;
     console.log('pageIndex = %d, posTop = %d', pageIndex, posTop);
@@ -97,14 +105,6 @@ $(function () {
   });
 
   // ★★ function ★★ //
-
-  function control_mouse(){
-    // 마우스 우 클릭 금지
-    $(document).bind("contextmenu", function(e){return false;});
-    // 드래그 클릭 금지
-    $(document).bind('selectstart', function() {return false;});
-  }
-
   function page01 () {
     // Page_01: 동작(1)
     const circleTime = 1500;

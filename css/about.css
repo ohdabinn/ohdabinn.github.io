@@ -225,6 +225,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  overflow: hidden;
 }
 
 #p2_preContainer > div {
@@ -244,7 +245,9 @@ body {
   font-weight: 800;
   font-size: 57px;
   flex-basis: content;
-  /* display: none; */
+  opacity: 0;
+
+  position: relative;
 }
 
 /* javaScript에서 추가한 <span> 요소 스타일*/
@@ -267,7 +270,7 @@ body {
   display: block;
   width: 425px;
   height: 0;
-  background-color: hsl(14, 96%, 59%);
+  background-color: #fb6030;
 
   position: absolute;
   top: 0;
@@ -300,13 +303,24 @@ body {
 
   overflow: hidden;
   padding: 0 60px;
-
-  display: none;
 }
 
 .p2_contents_container {
   /* background-color: lightyellow; */
   width: 650px
+}
+
+.left {
+  position: relative;
+  left: -750px;
+  opacity: 0;
+}
+
+.right {
+  position: relative;
+  right: -750px;
+  opacity: 0;
+
 }
 
 .left > h2, .left > h3 {
@@ -348,11 +362,30 @@ body {
   position: relative;
 }
 
+.right_image:hover {
+  cursor: url('../images/cursorRight.png') 2 2, auto;
+}
+
+.left_image:hover {
+  cursor: url('../images/cursorLeft.png') 2 2, auto;
+}
+
 .p2_image > img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition-duration: 500ms;
+}
+
+.right_image > img:hover {
+  /* cursor: url('../images/cursorRight.png') 2 2, auto; */
+  scale: 105%;
+}
+
+.left_image > img:hover {
+  /* cursor: url('../images/cursorLeft.png') 2 2, auto; */
+  scale: 105%;
 }
 
 .left_image {
@@ -533,7 +566,7 @@ body {
 .non {
   width: 10px;
   height: 10px;
-  background-color: #dde1e4;
+  background-color: #d0d4d6;
   border-radius: 50%;
   z-index: 3;
   opacity: 0;
@@ -646,6 +679,10 @@ body {
   position: relative;
 }
 
+#p3_motion_01 > ul > li > img {
+  position: relative;
+}
+
 /* 작은 글씨 설정 */
 #p3_motion_01 > ul > li > h4 {
   font-size: 18px;
@@ -655,7 +692,7 @@ body {
   right: -30px;
   bottom: 0;
 
-  display: none;
+  opacity: 0;
 }
 
 #p3_motion_01 > ul > li:nth-child(1) > h4 {
@@ -675,33 +712,27 @@ body {
 }
 
 /* 동작 1 : 좌우 라인 */
-.p3_line::before {
-  content: "";
+.p3LeftLine {
   position: absolute;
   top: 50%;
-  left: -8%;
-  width: 625px;
+  left: 0;
+  display: block;
+  width: 0;
 
-  /* 작은 글씨 나타났을 때 */
-  /* width: 565px; */
- 
+  height: 1px;
+  background-color: #1c1c1c;
+}
+
+.p3RightLine {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: block;
+  width: 0;
+
   height: 1px;
   background-color: #1c1c1c;
   z-index: 1;
-}
-
-.p3_line::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -8%;
-  width: 655px;
-
-  /* 작은 글씨 나타났을 때 */
-  /* width: 595px; */
-
-  height: 1px;
-  background-color: #1c1c1c;
 }
 
 /* ------------------- page 03 (2) ------------------- */
@@ -838,6 +869,12 @@ body {
   font-weight: 500;
 }
 
+#smallSText {
+  font-size: 0.85em;
+  position: relative;
+  left: 15px
+}
+
 /* SWOT 이미지 hover */
 .swotBox > img:hover {
   transform: scale(1.08, 1.08);
@@ -850,18 +887,22 @@ body {
 
 .swotBox:nth-child(1) > img:hover {
   content: url(../images/02_About_Images14.png);
+  cursor: move;
 }
 
 .swotBox:nth-child(2) > img:hover {
   content: url(../images/02_About_Images15.png);
+  cursor: move;
 }
 
 .swotBox:nth-child(3) > img:hover {
   content: url(../images/02_About_Images16.png);
+  cursor: move;
 }
 
 .swotBox:nth-child(4) > img:hover {
   content: url(../images/02_About_Images17.png);
+  cursor: move;
 }
 
 /* ------------------- footer ------------------- */

@@ -548,6 +548,7 @@ body {
   height: 1px;
   background-color: #1c1c1c;
   z-index: 1;
+  transition-duration: 300ms;
 }
 
 .middleLineLeft {
@@ -557,6 +558,8 @@ body {
   width: 1px;
   height: 500px;
   background-color: #1c1c1c;
+  transition-duration: 300ms;
+
 
   z-index: 3;
 }
@@ -568,13 +571,14 @@ body {
   width: 1px;
   height: 500px;
   background-color: #1c1c1c;
+  transition-duration: 300ms;
+
 
   z-index: 3;
 }
 
 #title_left.on01 {
   left: -420px;
-  transition-duration: 800ms;
 }
 
 .titleLineLeft.on02 {
@@ -650,8 +654,8 @@ body {
 
 #middle_contents > img:nth-child(2).on14 {
   opacity: 1;
-  transition-duration: 2000ms;
   z-index: 3;
+  transition-duration: 2000ms;
 }
 
 /* ------------------- page 03 ------------------- */
