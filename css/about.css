@@ -9,6 +9,10 @@ body {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* .Allpage */
 .Allpage {
   width: 100vw;
@@ -126,6 +130,95 @@ body {
   bottom: 20px;
 }
 
+/* 시계 */
+.clock01 {
+  width: 130px;
+  height: 88px;
+
+  position: absolute;
+  top: 70px;
+  left: 450px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.clock02 {
+  width: 108px;
+  height: 102px;
+
+  position: absolute;
+  top: 113px;
+  left: 603px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.clock03 {
+  width: 101px;
+  height: 103px;
+
+  position: absolute;
+  top: 225px;
+  left: 635px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.clock04 {
+  width: 106px;
+  height: 128px;
+
+  position: absolute;
+  top: 333px;
+  left: 585px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.clock05 {
+  width: 115px;
+  height: 104px;
+
+  position: absolute;
+  top: 380px;
+  left: 465px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.clock06 {
+  width: 93px;
+  height: 120px;
+
+  position: absolute;
+  top: 320px;
+  left: 365px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.clock07 {
+  width: 72px;
+  height: 119px;
+
+  position: absolute;
+  top: 235px;
+  left: 330px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
+.clock08 {
+  width: 100px;
+  height: 103px;
+
+  position: absolute;
+  top: 113px;
+  left: 330px;
+  opacity: 0;
+  transition-duration: 400ms;
+}
+
 #p1_container_01 > div {
   position: absolute;
   bottom: -10px;
@@ -171,12 +264,6 @@ body {
   line-height: 1.5;
 
   opacity: 0;
-}
-
-/* 시계 gif */
-#p1_container_01 > img {
-  display: block;
-  width: 100%;
 }
 
 /* conainer_02 */
@@ -715,7 +802,7 @@ body {
 .p3LeftLine {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: -100px;
   display: block;
   width: 0;
 
@@ -726,7 +813,7 @@ body {
 .p3RightLine {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: -100px;
   display: block;
   width: 0;
 

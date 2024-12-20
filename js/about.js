@@ -2,7 +2,7 @@ $(function () {
   // 키보드 스크롤 이동 동작 제어
   $(document).keydown(function(event){
     if(event.keyCode == 38 || event.keyCode == 40){
-      console.log(event);
+      // console.log(event);
       event.preventDefault();
     }
   });
@@ -14,7 +14,7 @@ $(function () {
 
   function control_mouse(){
     // 마우스 우 클릭 금지
-    $(document).bind("contextmenu", function(e){return false;});
+    // $(document).bind("contextmenu", function(e){return false;});
     // 드래그 클릭 금지
     $(document).bind('selectstart', function() {return false;});
   }
@@ -22,45 +22,57 @@ $(function () {
   const $html = $('html');
   const $window = $(window);
   let pageIndex = 0;
+  // pageIndex = 0, 1, 2, 3, 4, 5
 
-  // 페이지 최상단으로 이동하는 버튼
+  // 페이지 최상단으로 이동하는 버튼 (우측 하단 느낌표 gif)
   const $mark = $('<a href="#"></a>').appendTo('#nav').addClass('mark');
-  $(".mark").on('click', function(){
-    $html.animate({ scrollTop: 0 }, 500 );
+
+  $mark.on('click', function(){
+    pageIndex = 0;
+    $html.animate({ scrollTop: 0 }, 400 );
     return false;
   });
 
   /* ---------------------------------- */
+  // 새로고침 했을 때, 기존 스크롤 위치를 기억하지 않는다.
   history.scrollRestoration = "manual";
 
+  // 브라우저 창의 높이
   let windowHeight = $window.height();
-   
+ 
   console.log('LOAD: pageIndex = ' + pageIndex);
-  
+
   $html.animate({ scrollTop: pageIndex * windowHeight}, 10);
   const lastPageIndex = $('.Allpage').length;
-  
+
+  // 최상단으로 이동
   $html.animate({ scrollTop: 0 }, 50);
-  
+
+  // page01(첫페이지)의 동작 실행
   page01();
-  
+
   // 페이지 스크롤링
   window.addEventListener('wheel', function (event) {
     event.preventDefault();
-  
+
+    // 스크롤 중에는 함수 작동을 멈춤
     if ($html.is(':animated')) return;
-  
+
+    
     if (event.deltaY > 0) {
-  
-      if (pageIndex >= 5) {
-        $window.scrollTop(windowHeight * 5);
+      console.log('scroll down')
+
+      if (pageIndex >= 6) {
+        // 1page[0], ★2page[1], 3page[2], ★4page[3], 5page[4], footer[5]
+        $window.scrollTop(windowHeight * 6);
       }
-  
+
       if (pageIndex >= lastPageIndex) return;
       pageIndex++;
-  
-      console.log(pageIndex);
-  
+
+      console.log('현재 pageIndex : ' + pageIndex);
+
+      // page Down -> pageIndex = 2page[1], 3page[2], 4page[3], 5page[4]
       switch (pageIndex) {
         case 1:
           page02();
@@ -68,31 +80,39 @@ $(function () {
         case 2:
           page03();
           break;
+        case 3:
+          page04();
+          break;
+        case 4:
+          page05();
+          break;
         default:
       }
     }
-  
+
+    // page Up -> pageIndex = 1page[0], 3page[2],
     else if (event.deltaY < 0) {
+      console.log('scroll up')
       if (pageIndex <= 0) return;
       pageIndex--;
-  
+
       switch (pageIndex) {
         case 0:
           page01();
           break;
-        case 1:
-          page02();
+        case 2:
+          page03();
           break;
         default:
       }
     };
-  
+
     const posTop = windowHeight * pageIndex;
     console.log('pageIndex = %d, posTop = %d', pageIndex, posTop);
-      
+    
     $html.animate({ scrollTop: posTop });
   }, {passive: false});
-  
+
   window.addEventListener('resize', function () {
     windowHeight = $window.height();
     console.log('RESIZE: windowHeight = ' + windowHeight);
@@ -102,46 +122,59 @@ $(function () {
   });
   
   // ★★ function ★★ //
-  // page_01
+  // page_01 -> pageIndex [0]
   function page01 () {
-    console.log('page01 도착 !')
+    // 시계 요소 생성성
+    for(let i = 1; i <= 8; i++) {
+      $(`<img src="images/02_About_Images01_clock0${[i]}.png" alt="clock_image">`).addClass(`clock0${[i]}`).appendTo('#p1_container_01');
+    };
+    
+    $('.clock01').animate({ opacity: 1 }, 300);
+    $('.clock02').delay(500).animate({ opacity: 1 }, 300);
+    $('.clock03').delay(1000).animate({ opacity: 1 }, 300);
+    $('.clock04').delay(1500).animate({ opacity: 1 }, 300);
+    $('.clock05').delay(2000).animate({ opacity: 1 }, 300);
+    $('.clock06').delay(2500).animate({ opacity: 1 }, 300);
+    $('.clock07').delay(3000).animate({ opacity: 1 }, 300);
+    $('.clock08').delay(3500).animate({ opacity: 1 }, 300);
+  
+    // 글자 움직임
     $('#p1_container_01 > div > h4').delay(500).animate({
       left: 715,
       opacity: 1
-    }, 800, function() {
-      $('#skillList').children(':first').delay(700).animate({
+      }, 800);
+
+    // Technical Skills
+    $('#skillList').children(':nth-child(1)').delay(1500).animate({
         opacity: 1
-      }, 500, function () {
-        $('#skillList').children(':nth-child(2)').delay(700).animate({
-          opacity: 1
-        }, 500, function () {
-          $('#skillList').children(':nth-child(3)').delay(700).animate({
-            opacity: 1
-          }, 500)
-        });
-      })
-    })
+      }, 700);
+    
+    // Certificates
+    $('#skillList').children(':nth-child(2)').delay(2200).animate({
+        opacity: 1
+      }, 700);
+
+    // SWOT
+    $('#skillList').children(':nth-child(3)').delay(2900).animate({
+        opacity: 1
+      }, 700);
   }
 
+  // page_02 -> pageIndex [1]
   function page02 () {
-    console.log('page02 도착 !')
     // page_02(1)
-    // 1. 흩어져 있는 글씨로 보여주기
     // HTML Markup text 가져옴
-    $('html, body').animate({}, )
     let textTotal = $('#p2_preContainer > div > h2').text();
-    console.log(textTotal);
 
     // 배열에 넣어둔 text 하나씩 가져오기
     let textEach = textTotal.split("");
-    console.log(textEach.length);
 
-    // 가져온 text를 span 요소로 추가하기
+    // 가져온 text를 span 요소로 DOM 추가
     for(let i = 0; i < textEach.length; i++) {
       $(`<span>${(textEach[i])}</span>`).addClass('spanStyle').appendTo('.new');
     };
 
-    // 처음 나타날 [top, left]
+    // 처음 나타날 text의 [top, left]
     const letterPos = [
       /* T */ { top: 10, left: 0 }, 
       /* e */ { top: 400, left: 100 }, 
@@ -178,214 +211,147 @@ $(function () {
     ];
 
     const $new = $('.new');
-    console.log($new);
-    console.log($new.children('span'));
-    console.log(textEach.length);
 
+    // 흩어져 있는 글씨 화면에 보여주기
     for (let i = 0; i < textEach.length; i++) {
-      // console.log(i, 'letterPos =', letterPos[i]);
+      console.log('letterPos =', letterPos[i]);
       $new.children('span').eq(i).css(letterPos[i]);
     };
 
-    // 2. 원래 위치로 이동하기
-    // 이동할 원래 위치 [top, left]
+    // 중심 이동 text 위치 [left]
     const orignLetterPosLeft = [425, 458, 491, 524, 559, 593.5, 609, 642, 674, 0, 702, 739, 771, 787, 802, 817, 864, 900, 943, 976, 1000, 1022, 1037, 1058.5, 1074, 1107, 1139, 1160, 1193];
 
+    // 중심으로 text 이동
     for(let i = 0; i < textEach.length; i++) {
       $new.children('span').eq(i).animate({
         top: 372,
         left: orignLetterPosLeft[i]
       }, 2000, function () {
+        // JavaScript에서 추가한 글씨 없애기
         $new.children('span').css({ opacity: 0 })
+
+        // HTML Markup에 있는 글씨 나타나기
         $('#p2_preContainer > div > h2').css({ opacity: 1 });
-      })
+      });
     }
 
-    // 3. 컬러 상자 요소 추가
+    // 컬러 상자 요소 DOM 추가
     $('<span></span>').addClass('longBoxLeft').prependTo('#p2_preContainer');
     $('<span></span>').addClass('longBoxRight').prependTo('#p2_preContainer');
 
-    // 4. 컬러 상자 사이즈 변경
-    $('.longBoxLeft').delay(1600).animate({ height: 425 }, 1500, function () {
-        $(this).delay(600).animate({ height: 0 }, 1400 );
-        $('#h2_text').children('h2:nth-child(1)').delay(600).animate({ top: -500, opacity: 0 }, 1550)
-    });
+    // 컬러 상자 사이즈 변경
+    $('.longBoxLeft').delay(2000).animate({ height: 425 }, 1500)
+      .delay(500)
+      .animate({ height: 0 }, 1400);
 
-    $('.longBoxRight').delay(1600).animate({ height: 425 }, 1500, function () {
-        console.log('.logBoxRight 높이 0으로 설정');
-        $(this).delay(600).animate({ height: 0 }, 1400);
-        console.log('오른쪽 글씨 사라짐');
-        $('#h2_text').children('h2:nth-child(3)').delay(600).animate({ bottom: -500, opacity: 0 }, 1550,
-          /* page_02(2) */ moveNextPage01());
-    });
-  
-    // < 다음 페이지로 이동 함수 >
-    function moveNextPage01 () {
-      console.log('다음 페이지로 이동');
-      var offset=$(".scrollPage01").offset();
-      $('html, body').delay(2000).animate({ scrollTop:offset.top }, 800, slideElement());
-    }
+    $('.longBoxRight').delay(2000).animate({ height: 425 }, 1500)
+      .delay(500)
+      .animate({ height: 0 }, 1400);
+    
+    $('#h2_text').children('h2:nth-child(1)').delay(4000).animate({ top: -500, opacity: 0 }, 1600);
 
-    // < 양쪽에서 요소 밀려 들어오는 움직임 함수 >
-    function slideElement () {
-      console.log('좌우 컨텐츠 나타남');
-      $('.left').delay(2800).animate({ left: 0, opacity: 1 }, 1000);
-      $('.right').delay(2800).animate({ right: 0, opacity: 1 }, 1000, function () { colorCircleCreate() });
-    }
-
-    // < 색 채워지는 동그라미 함수 >
-    function colorCircleCreate () {
-      // 동그라미 요소 추가
-      $('<div></div>').addClass('boxFlex').appendTo('#photoshop');
-      $('<div></div>').addClass('boxFlex').appendTo('#illustrator');
-      $('<div></div>').addClass('boxFlex').appendTo('#indesign');
-      $('<div></div>').addClass('boxFlex').appendTo('#powerpoint');
-      $('<div></div>').addClass('boxFlex').appendTo('#excel');
-      $('<div></div>').addClass('boxFlex').appendTo('#word');
-      $('<div></div>').addClass('boxFlex').appendTo('#premEffects');
-      $('<div></div>').addClass('boxFlex').appendTo('#htmlCss');
-      $('<div></div>').addClass('boxFlex').appendTo('#javascriptJquery');
-      
-      // → photoshop (9/1)
-      
-      for(let i = 0; i <= 8; i++) {
-        console.log('포토샵 동그라미 추가')
-        $('<span></span>').addClass('Pon').appendTo('#photoshop > div');
-      }
-
-      $('<span></span>').addClass('non').appendTo('#photoshop > div');
-
-      // → illustrator (10/0)
-      for(let i = 0; i <= 9; i++) {
-        $('<span></span>').addClass('Aon').appendTo('#illustrator > div');
-      }
-
-      // → indesign (4/6)
-      for(let i = 0; i <= 3; i++) {
-        $('<span></span>').addClass('Ion').appendTo('#indesign > div');
-      }
-      
-      for(let i = 0; i <= 5; i++) {
-        $('<span></span>').addClass('non').appendTo('#indesign > div');
-      }
-
-      // → powerpoint (8/2)
-      for(let i = 0; i <= 7; i++) {
-        $('<span></span>').addClass('PWon').appendTo('#powerpoint > div');
-      }
-
-      for(let i = 0; i <= 1; i++) {
-        $('<span></span>').addClass('non').appendTo('#powerpoint > div');
-      }
-
-      // → excel (6/4)
-      for(let i = 0; i <= 5; i++) {
-        $('<span></span>').addClass('Eon').appendTo('#excel > div');
-      }
-
-      for(let i = 0; i <= 3; i++) {
-        $('<span></span>').addClass('non').appendTo('#excel > div');
-      }
-
-      // → word (5/5)
-      for(let i = 0; i <= 4; i++) {
-        $('<span></span>').addClass('Won').appendTo('#word > div');
-      }
-
-      for(let i = 0; i <= 4; i++) {
-        $('<span></span>').addClass('non').appendTo('#word > div');
-      }
-
-      // → premiere, after effects(3/7)
-      for(let i = 0; i <= 2; i++) {
-        $('<span></span>').addClass('PAon').appendTo('#premEffects > div');
-      }
-
-      for(let i = 0; i <= 6; i++) {
-        $('<span></span>').addClass('non').appendTo('#premEffects > div');
-      }
-
-      // → html, css (5/3)
-      for(let i = 0; i <= 2; i++) {
-        $('<span></span>').addClass('non').appendTo('#htmlCss > div');
-      }
-      for(let i = 0; i <= 4; i++) {
-        $('<span></span>').addClass('Webon').appendTo('#htmlCss > div');
-      }
-
-      // → javascript, jquery (4/4)
-      for(let i = 0; i <= 3; i++) {
-        $('<span></span>').addClass('non').appendTo('#javascriptJquery > div');
-      }
-      for(let i = 0; i <= 3; i++) {
-        $('<span></span>').addClass('Webon').appendTo('#javascriptJquery > div');
-      }
-      
-      // 동그라미 동작
-      const time = 400;
-      const timeDelay = 170;
-      const number = 11;
-
-      const $photoshop = $('#photoshop > div > span');
-      const $illustrator = $('#illustrator > div > span');
-      const $indesign = $('#indesign > div > span');
-      const $powerpoint = $('#powerpoint > div > span');
-      const $excel = $('#excel > div > span');
-      const $word = $('#word > div > span');
-      const $premEffects = $('#premEffects > div > span');
-      const $htmlCss = $('#htmlCss > div > span');
-      const $javascriptJquery = $('#javascriptJquery > div > span');
-
-      // → photoshop 동작
-      for(let i = 0; i < number; i++) {
-        $photoshop.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-      // → illustrator 동작
-      for(let i = 0; i < number; i++) {
-        $illustrator.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-      // → indesign 동작
-      for(let i = 0; i < number; i++) {
-        $indesign.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-      // → powerpoint 동작
-      for(let i = 0; i < number; i++) {
-        $powerpoint.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-      // → excel 동작
-      for(let i = 0; i < number; i++) {
-        $excel.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-      // → word 동작
-      for(let i = 0; i < number; i++) {
-        $word.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-      // → premEffects 동작
-      for(let i = 0; i < number; i++) {
-        $premEffects.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-      // → htmlCss 동작
-      for(let i = 0; i < number; i++) {
-        $htmlCss.eq(i).delay((i) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-
-
-      // → javascriptJquery 동작
-      for(let i = 0; i < 9; i++) {
-        $javascriptJquery.eq(i).delay((i) * timeDelay).animate({ opacity: 1 }, time * (i+1));
-      }
-    }
+    $('#h2_text').children('h2:nth-child(3)').delay(4000).animate({ bottom: -500, opacity: 0 }, 1600);
   }
-  
+
+  // page_03 -> pageIndex [2]
   function page03 () {
-    console.log('page03 도착 !')
+    // <양쪽에서 요소 밀려 들어오는 움직임
+    // console.log('좌우 컨텐츠 나타남');
+    $('.left').animate({ left: 0, opacity: 1 }, 1000);
+    $('.right').animate({ right: 0, opacity: 1 }, 1000 );
+
+    // 동그라미 요소 추가
+    $('<div></div>').addClass('boxFlex').appendTo('#photoshop');
+    $('<div></div>').addClass('boxFlex').appendTo('#illustrator');
+    $('<div></div>').addClass('boxFlex').appendTo('#indesign');
+    $('<div></div>').addClass('boxFlex').appendTo('#powerpoint');
+    $('<div></div>').addClass('boxFlex').appendTo('#excel');
+    $('<div></div>').addClass('boxFlex').appendTo('#word');
+    $('<div></div>').addClass('boxFlex').appendTo('#premEffects');
+    $('<div></div>').addClass('boxFlex').appendTo('#htmlCss');
+    $('<div></div>').addClass('boxFlex').appendTo('#javascriptJquery');
+      
+    // → photoshop (9/1)
+    for(let i = 0; i <= 8; i++) { $('<span></span>').addClass('Pon').appendTo('#photoshop > div'); };
+    $('<span></span>').addClass('non').appendTo('#photoshop > div');
+
+    // → illustrator (10/0)
+    for(let i = 0; i <= 9; i++) { $('<span></span>').addClass('Aon').appendTo('#illustrator > div'); };
+
+    // → indesign (4/6)
+    for(let i = 0; i <= 3; i++) { $('<span></span>').addClass('Ion').appendTo('#indesign > div'); };
+    for(let i = 0; i <= 5; i++) { $('<span></span>').addClass('non').appendTo('#indesign > div'); };
+
+    // → powerpoint (8/2)
+    for(let i = 0; i <= 7; i++) { $('<span></span>').addClass('PWon').appendTo('#powerpoint > div'); };
+    for(let i = 0; i <= 1; i++) { $('<span></span>').addClass('non').appendTo('#powerpoint > div'); };
+
+    // → excel (6/4)
+    for(let i = 0; i <= 5; i++) { $('<span></span>').addClass('Eon').appendTo('#excel > div'); };
+    for(let i = 0; i <= 3; i++) { $('<span></span>').addClass('non').appendTo('#excel > div'); };
+
+    // → word (5/5)
+    for(let i = 0; i <= 4; i++) { $('<span></span>').addClass('Won').appendTo('#word > div'); };
+    for(let i = 0; i <= 4; i++) { $('<span></span>').addClass('non').appendTo('#word > div'); };
+
+    // → premiere, after effects(3/7)
+    for(let i = 0; i <= 2; i++) { $('<span></span>').addClass('PAon').appendTo('#premEffects > div'); };
+    for(let i = 0; i <= 6; i++) { $('<span></span>').addClass('non').appendTo('#premEffects > div'); };
+
+    // → html, css (5/3)
+    for(let i = 0; i <= 2; i++) { $('<span></span>').addClass('non').appendTo('#htmlCss > div'); };
+    for(let i = 0; i <= 4; i++) { $('<span></span>').addClass('Webon').appendTo('#htmlCss > div'); };
+
+    // → javascript, jquery (4/4)
+    for(let i = 0; i <= 3; i++) { $('<span></span>').addClass('non').appendTo('#javascriptJquery > div'); };
+    for(let i = 0; i <= 3; i++) { $('<span></span>').addClass('Webon').appendTo('#javascriptJquery > div'); };
+      
+    // 동그라미 동작
+    const time = 400;
+    const timeDelay = 170;
+    const number = 11;
+
+    const $photoshop = $('#photoshop > div > span');
+    const $illustrator = $('#illustrator > div > span');
+    const $indesign = $('#indesign > div > span');
+    const $powerpoint = $('#powerpoint > div > span');
+    const $excel = $('#excel > div > span');
+    const $word = $('#word > div > span');
+    const $premEffects = $('#premEffects > div > span');
+    const $htmlCss = $('#htmlCss > div > span');
+    const $javascriptJquery = $('#javascriptJquery > div > span');
+
+    // → photoshop 동작
+    for(let i = 0; i < number; i++) { $photoshop.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → illustrator 동작
+    for(let i = 0; i < number; i++) { $illustrator.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → indesign 동작
+    for(let i = 0; i < number; i++) { $indesign.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → powerpoint 동작
+    for(let i = 0; i < number; i++) { $powerpoint.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → excel 동작
+    for(let i = 0; i < number; i++) { $excel.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → word 동작
+    for(let i = 0; i < number; i++) { $word.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → premEffects 동작
+    for(let i = 0; i < number; i++) { $premEffects.eq(i).delay((i+1) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → htmlCss 동작
+    for(let i = 0; i < number; i++) { $htmlCss.eq(i).delay((i) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+
+    // → javascriptJquery 동작
+    for(let i = 0; i < 9; i++) { $javascriptJquery.eq(i).delay((i) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+  }
+
+  // page_04 -> pageIndex [3]
+  function page04 () {
+    // console.log('page03 도착 !')
     // page_03(1)
     const $p3LeftLine = $('<span></span>').addClass('p3LeftLine').appendTo('.page03Start');
     const $p3RightLine = $('<span></span>').addClass('p3RightLine').appendTo('.page03Start');
@@ -393,24 +359,23 @@ $(function () {
     const $imageList = $('#p3_motion_01 > ul');
     const $smallText = $('#p3_motion_01 > ul > li > h4');
     
-    // 좌우 라인 나타남
-    $p3LeftLine.animate({ width: 615 }, 1400);
-    $p3RightLine.animate({ width: 657}, 1400, function () {
-      // 글자 좌우로 벌어짐
-      $imageList.delay(400).animate({ gap: 60 }, 600);
-      // 작은 글자 나타남
-      $smallText.delay(400).animate({ opacity: 1 }, 600);
-      // 좌우 라인 짧아짐
-      $p3LeftLine.delay(400).animate({ width: 556 }, 600);
-      $(this).delay(400).animate({ width: 597}, 500, moveNextPage02 ());
-    });
+    // 좌우 라인 나타남 / 줄어듬
+    $p3LeftLine.delay(100).animate({ width: 590 }, 1400)
+    .delay(200)
+    .animate({ width: 530 }, 500);
 
-    // < 다음 페이지로 이동 함수 >
-    function moveNextPage02 () {
-      console.log('다음 페이지로 이동');
-      var offset=$(".scrollPage02").offset();
-      $('html, body').delay(2000).animate({ scrollTop:offset.top }, 800);
-    }
+    $p3RightLine.delay(100).animate({ width: 620}, 1400)
+    .delay(200)
+    .animate({ width: 560 }, 500);
+    
+    // 글자 좌우로 벌어짐
+    $imageList.delay(1700).animate({ gap: 60 }, 700);
+      
+    // 작은 글자 나타남
+    $smallText.delay(1700).animate({ opacity: 1 }, 700);
   }
-  
+
+  // page05 (SWOT) -> pageIndex [4]
+  function page05 () {}
+  // Page06 (footer) -> pageIndex [5]
 });

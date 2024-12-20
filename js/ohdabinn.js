@@ -56,14 +56,16 @@ $(function () {
     if (event.deltaY > 0) {
 
       if (pageIndex >= 3) {
+        // 1page[0], 2page[1], 3page[2], footer[3]
         $window.scrollTop(windowHeight * 3);
       }
 
       if (pageIndex >= lastPageIndex) return;
       pageIndex++;
 
-      console.log(pageIndex);
+      console.log('현재 pageIndex : ' + pageIndex);
 
+      // page Down -> pageIndex = 2page[1], 3page[2]
       switch (pageIndex) {
         case 1:
           page02();
@@ -79,6 +81,7 @@ $(function () {
       if (pageIndex <= 0) return;
       pageIndex--;
 
+      // page Up -> pageIndex = 1page[0], 2page[1]
       switch (pageIndex) {
         case 0:
           page01();
