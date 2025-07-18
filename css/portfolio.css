@@ -4,13 +4,26 @@ html {
 }
 
 body {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* .Allpage */
+.Allpage {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.color {
+  background-color: gray;
 }
 
 /* ------------------- nav_GNB (상단고정) ------------------- */
@@ -149,114 +162,3 @@ body {
   opacity: 1;
   visibility: visible;
 }
-
-/* ------------------- page 01 ------------------- */
-#container {
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-
-  color: #1c1c1c;
-}
-
-/* GET IN TOUCH */
-#container > h1 {
-  width: 1150px;
-  font-size: 150px;
-  font-weight: 600;
-}
-
-#container > h1 span {
-  opacity: 0;
-  display: inline-block;
-  transition: opacity 0.5s ease-in-out;
-}
-
-#container > h1:hover {
-  cursor: url('../images/contactMe_cursor-08.png') 2 2, auto;
-}
-
-
-/* odb0522@naver.com */
-#container > div:nth-child(2) > a {
-  display: block;
-  text-decoration: none;
-  color: #1c1c1c;
-  
-  font-size: 60px;
-  font-weight: 400;
-
-  position: relative;
-
-  margin-top: 20px;
-}
-
-/* #container > div:nth-child(2) > a:hover {
-  cursor: url('../images/contactMe_cursor-04.png') 4 24, auto;
-  pointer-events: auto;
-} */
-
-#container > div:nth-child(2) > a::after {
-  content: "";
-  background-color: #1c1c1c;
-  width: 575px;
-  height: 1.5px;
-  
-  position: absolute;
-  bottom: -1px;
-  left: 0px;
-}
-
-/* Info */
-#container > div:nth-child(3) {
-  margin-top: 60px;
-  font-size: 28px;
-  font-weight: 400;
-}
-
-#container > div:nth-child(3) > ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 40px 0 20px 0;
-}
-
-/* 6개 항목 */
-#container > div:nth-child(3) > ul > li {
-  flex: 0 0 calc(33.333% - 15px);
-  box-sizing: border-box;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-#container > div:nth-child(3) > ul > li:nth-child(2), #container > div:nth-child(3) > ul > li:nth-child(3), #container > div:nth-child(3) > ul > li:nth-child(5), #container > div:nth-child(3) > ul > li:nth-child(6) {
-  margin-left: -150px;
-}
-
-/* 인스타그램, 블로그 링크 */
-#container > div:nth-child(3) > ul > li > a {
-  color: #fb6030;
-}
-
-/* 인스타그램, 블로그 링크 계속 같은 컬러로 유지 */
-a:link,
-a:visited,
-a:hover,
-a:active {
-  color: #fb6030;
-}
-
-#kakaoTalk_qr {
-  position:fixed;
-  right: 5%;
-  bottom: 5%;
-
-  font-size: 20px;
-  text-align: center;
-}
-#kakaoTalk_qr > ul > li > img { 
-  width: 120px;
-}
-
-
