@@ -128,11 +128,6 @@ body {
   margin-top: 20px;
 }
 
-/* #container > div:nth-child(2) > a:hover {
-  cursor: url('../images/contactMe_cursor-04.png') 4 24, auto;
-  pointer-events: auto;
-} */
-
 #container > div:nth-child(2) > a::after {
   content: "";
   background-color: #1c1c1c;
@@ -198,6 +193,10 @@ a:active {
 
 #kakaoTalk_qr > ul > li:nth-child(3) {
   margin-top: -3px;
+}
+
+#kakaoTalk_qr > ul:hover {
+  cursor: url('../images/contactMe_cursor-08.png') 2 2, auto;
 }
 
 
