@@ -13,7 +13,7 @@ body {
   display: none;
 }
 
-/* ------------------- nav (상단고정) ------------------- */
+/* ------------------- nav_GNB (상단고정) ------------------- */
 #nav {
   width: 100%;
   height: 55px;
@@ -31,7 +31,7 @@ body {
 }
 
 #nav > p {
-  font-size: 0.9em;
+  font-size: 13px;
   font-weight: 400;
   color: #fb6030;
   line-height: 55px;
@@ -44,12 +44,18 @@ body {
   padding: 10px;
 }
 
+#nav > ul > li {
+  width: 150px;
+}
+
 #nav > ul > li > a {
   display: block;
+  width: 100%;
   text-decoration: none;
   color: inherit;
-  font-weight: 500;
-  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  font-size: 18px;
   box-sizing: border-box;
   border: 1px solid transparent;
 
@@ -76,16 +82,62 @@ body {
   left: 25px;
 }
 
-/* 페이지 container -> 고정된 사이즈 */
-/* .container { 
-  width: 1650px;
-  height: 800px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 20px;
-} */
+/* ------------------- nav_LNB ------------------- */
+/* .portfolio_sub = LNB <ul> */
+.portfolio_sub {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  /* gap: 25px; */
+  padding: 7px;
+  width: calc(130px * 4);
+
+  margin-top: 4px;
+  margin-left: -190px;
+
+  transition: all 0.3s ease;
+}
+
+.portfolio_sub > li {
+  width: 130px;
+  background-color: rgba(251, 96, 48, 0.5);
+}
+
+.portfolio_sub > li > a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color:#1c1c1c ;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+
+  line-height: 2.1em;
+  padding: 0 15px;
+}
+
+.portfolio_sub > li:nth-child(1) {
+  border-radius: 20px 0 0 20px;
+}
+
+.portfolio_sub > li:nth-child(4) {
+  border-radius: 0 20px 20px 0;
+}
+
+.portfolio_sub > li > a:hover {
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.775), 0px 3px 0px rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  /* border: 1px solid rgba(251, 96, 48, 0.2); */
+  text-shadow: -2px 1px 0px rgba(0, 0, 0, 0.1s), 0px 0px 10px;
+  color: #fff;
+}
+
+.portfolio_menu:hover .portfolio_sub {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* ------------------- page 01 ------------------- */
 #container {
