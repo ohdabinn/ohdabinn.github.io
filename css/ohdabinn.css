@@ -66,7 +66,7 @@ body {
   cursor: pointer;
 }
 
-/* ------------------- nav (상단고정) ------------------- */
+/* ------------------- nav_GNB (상단고정) ------------------- */
 #nav {
   width: 100%;
   height: 55px;
@@ -139,6 +139,26 @@ body {
   transform: translate(-50%, -50%);
   margin-top: 20px;
 }
+
+/* ------------------- nav_LNB ------------------- */
+/* .portfolio_sub = LNB <ul> */
+.portfolio_sub {
+  display: flex;
+  gap: 30px;
+}
+
+.portfolio_sub > li > a {
+  display: block;
+  text-decoration: none;
+  color: #fb6030;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: #1c1c1c;
+
+  width: 100px;
+  height: 50px;
+}
+
 
 /* ------------------- page 01 ------------------- */
 /* p1_동작 #01 */

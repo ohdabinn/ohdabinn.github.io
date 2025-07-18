@@ -450,11 +450,11 @@ body {
 }
 
 .right_image:hover {
-  cursor: url('../images/cursorRight.png') 2 2, auto;
+  cursor: url('../images/contactMe_cursor-08.png') 2 2, auto;
 }
 
 .left_image:hover {
-  cursor: url('../images/cursorLeft.png') 2 2, auto;
+  cursor: url('../images/contactMe_cursor-07.png') 2 2, auto;
 }
 
 .p2_image > img {

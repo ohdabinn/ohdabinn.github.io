@@ -47,12 +47,18 @@ $(function () {
 
   page01();
 
+  setTimeout(() => {
+    isScrolling = false;
+  }, 20500);
+
   // 페이지 스크롤링
   window.addEventListener('wheel', function (event) {
     event.preventDefault();
 
-    if ($html.is(':animated')) return;
+    if (isScrolling || $html.is(':animated')) return;
 
+    if ($html.is(':animated')) return;
+  
     if (event.deltaY > 0) {
 
       if (pageIndex >= 3) {
@@ -97,6 +103,14 @@ $(function () {
     console.log('pageIndex = %d, posTop = %d', pageIndex, posTop);
     
     $html.animate({ scrollTop: posTop });
+
+     // 1페이지에서만 스크롤 제한
+    if (pageIndex === 0 && isScrolling) return;
+
+    // page01에서만 애니메이션 중엔 스크롤 막기
+    if (pageIndex === 0) {
+      isScrolling = true;
+    }
   }, {passive: false});
 
   window.addEventListener('resize', function () {
@@ -233,6 +247,10 @@ $(function () {
         width: 200
       }, 1000);
     }, 17500);
+
+    setTimeout(() => {
+      isScrolling = false;
+    }, 20500);
   }
   
   // Page_02 동작

@@ -1,4 +1,7 @@
 $(function () {
+
+  let isScrolling = false;
+
   // 키보드 스크롤 이동 동작 제어
   $(document).keydown(function(event){
     if(event.keyCode == 38 || event.keyCode == 40){
@@ -39,7 +42,7 @@ $(function () {
 
   // 브라우저 창의 높이
   let windowHeight = $window.height();
- 
+
   console.log('LOAD: pageIndex = ' + pageIndex);
 
   $html.animate({ scrollTop: pageIndex * windowHeight}, 10);
@@ -55,10 +58,12 @@ $(function () {
   window.addEventListener('wheel', function (event) {
     event.preventDefault();
 
+    if (isScrolling) return;
+    if ($html.is(':animated')) return;
+
     // 스크롤 중에는 함수 작동을 멈춤
     if ($html.is(':animated')) return;
 
-    
     if (event.deltaY > 0) {
       console.log('scroll down')
 
@@ -100,8 +105,17 @@ $(function () {
         case 0:
           page01();
           break;
+        case 1:
+          page02();
+          break;
         case 2:
           page03();
+          break;
+        case 3:
+          page04();
+          break;
+        case 4:
+          page05();
           break;
         default:
       }
@@ -124,6 +138,9 @@ $(function () {
   // ★★ function ★★ //
   // page_01 -> pageIndex [0]
   function page01 () {
+
+    isScrolling = true;
+
     // 시계 요소 생성성
     for(let i = 1; i <= 8; i++) {
       $(`<img src="images/02_About_Images01_clock0${[i]}.png" alt="clock_image">`).addClass(`clock0${[i]}`).appendTo('#p1_container_01');
@@ -157,11 +174,18 @@ $(function () {
     // SWOT
     $('#skillList').children(':nth-child(3)').delay(2900).animate({
         opacity: 1
-      }, 700);
+      }, 700, function () {isScrolling = false;});
+
+    setTimeout(() => {
+      isScrolling = false;
+    }, 7000)
   }
 
   // page_02 -> pageIndex [1]
   function page02 () {
+
+    isScrolling = true;
+
     // page_02(1)
     // HTML Markup text 가져옴
     let textTotal = $('#p2_preContainer > div > h2').text();
@@ -250,11 +274,19 @@ $(function () {
     
     $('#h2_text').children('h2:nth-child(1)').delay(4000).animate({ top: -500, opacity: 0 }, 1600);
 
-    $('#h2_text').children('h2:nth-child(3)').delay(4000).animate({ bottom: -500, opacity: 0 }, 1600);
+    $('#h2_text').children('h2:nth-child(3)').delay(4000).animate({ bottom: -500, opacity: 0 }, 1600), function () { isScrolling = false;
+    };
+
+    setTimeout(() => {
+      isScrolling = false;
+    }, 8000);
   }
 
   // page_03 -> pageIndex [2]
   function page03 () {
+
+    isScrolling = true;
+
     // <양쪽에서 요소 밀려 들어오는 움직임
     // console.log('좌우 컨텐츠 나타남');
     $('.left').animate({ left: 0, opacity: 1 }, 1000);
@@ -346,11 +378,18 @@ $(function () {
     for(let i = 0; i < number; i++) { $htmlCss.eq(i).delay((i) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
 
     // → javascriptJquery 동작
-    for(let i = 0; i < 9; i++) { $javascriptJquery.eq(i).delay((i) * timeDelay).animate({ opacity: 1 }, time * (i+1)); };
+    for(let i = 0; i < 9; i++) { $javascriptJquery.eq(i).delay((i) * timeDelay).animate({ opacity: 1 }, time * (i+1));};
+
+    setTimeout(() => {
+      isScrolling = false;
+    }, 8000);
   }
 
   // page_04 -> pageIndex [3]
   function page04 () {
+
+    isScrolling = true;
+
     // console.log('page03 도착 !')
     // page_03(1)
     const $p3LeftLine = $('<span></span>').addClass('p3LeftLine').appendTo('.page03Start');
@@ -372,7 +411,11 @@ $(function () {
     $imageList.delay(1700).animate({ gap: 60 }, 700);
       
     // 작은 글자 나타남
-    $smallText.delay(1700).animate({ opacity: 1 }, 700);
+    $smallText.delay(1700).animate({ opacity: 1 }, 700, function () {isScrolling = false});
+
+    setTimeout(() => {
+      isScrolling = false;
+    }, 8000);
   }
 
   // page05 (SWOT) -> pageIndex [4]
