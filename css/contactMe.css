@@ -100,7 +100,7 @@ body {
 
 .portfolio_sub > li {
   width: 130px;
-  background-color: rgba(251, 96, 48, 0.5);
+  background-color: rgba(251, 96, 48, 0.9);
 }
 
 .portfolio_sub > li > a {
