@@ -1,9 +1,11 @@
 $(function () {
 
+  let isScrolling = false;
+
   // 키보드 스크롤 이동 동작 제어
   $(document).keydown(function(event){
     if(event.keyCode == 38 || event.keyCode == 40){
-      console.log(event);
+      // console.log(event);
       event.preventDefault();
     }
   });
@@ -15,7 +17,7 @@ $(function () {
 
   function control_mouse(){
     // 마우스 우 클릭 금지
-    $(document).bind("contextmenu", function(e){return false;});
+    // $(document).bind("contextmenu", function(e){return false;});
     // 드래그 클릭 금지
     $(document).bind('selectstart', function() {return false;});
   }
@@ -23,8 +25,9 @@ $(function () {
   const $html = $('html');
   const $window = $(window);
   let pageIndex = 0;
+  // pageIndex = 0, 1, 2, 3
 
-  // 페이지 최상단으로 이동하는 버튼
+  // 페이지 최상단으로 이동하는 버튼 (우측 하단 느낌표 gif)
   const $mark = $('<a href="#"></a>').appendTo('#nav').addClass('mark');
 
   $mark.on('click', function(){
@@ -34,36 +37,39 @@ $(function () {
   });
 
   /* ---------------------------------- */
+  // 새로고침 했을 때, 기존 스크롤 위치를 기억하지 않는다.
   history.scrollRestoration = "manual";
 
+  // 브라우저 창의 높이
   let windowHeight = $window.height();
- 
+
   console.log('LOAD: pageIndex = ' + pageIndex);
 
   $html.animate({ scrollTop: pageIndex * windowHeight}, 10);
   const lastPageIndex = $('.Allpage').length;
 
+  // 최상단으로 이동
   $html.animate({ scrollTop: 0 }, 50);
 
+  // page01(첫페이지)의 동작 실행
   page01();
-
-  setTimeout(() => {
-    isScrolling = false;
-  }, 20500);
 
   // 페이지 스크롤링
   window.addEventListener('wheel', function (event) {
     event.preventDefault();
 
-    if (isScrolling || $html.is(':animated')) return;
-
+    if (isScrolling) return;
     if ($html.is(':animated')) return;
-  
-    if (event.deltaY > 0) {
 
-      if (pageIndex >= 3) {
-        // 1page[0], 2page[1], 3page[2], footer[3]
-        $window.scrollTop(windowHeight * 3);
+    // 스크롤 중에는 함수 작동을 멈춤
+    if ($html.is(':animated')) return;
+
+    if (event.deltaY > 0) {
+      console.log('scroll down')
+
+      if (pageIndex >= 6) {
+        // 1page[0], ★2page[1], 3page[2], ★4page[3], 5page[4], footer[5]
+        $window.scrollTop(windowHeight * 6);
       }
 
       if (pageIndex >= lastPageIndex) return;
@@ -71,7 +77,7 @@ $(function () {
 
       console.log('현재 pageIndex : ' + pageIndex);
 
-      // page Down -> pageIndex = 2page[1], 3page[2]
+      // page Down -> pageIndex = 2page[1], 3page[2], 4page[3], 5page[4]
       switch (pageIndex) {
         case 1:
           page02();
@@ -79,21 +85,31 @@ $(function () {
         case 2:
           page03();
           break;
+        case 3:
+          page04();
+          break;
         default:
       }
     }
 
+    // page Up -> pageIndex = 1page[0], 3page[2],
     else if (event.deltaY < 0) {
+      console.log('scroll up')
       if (pageIndex <= 0) return;
       pageIndex--;
 
-      // page Up -> pageIndex = 1page[0], 2page[1]
       switch (pageIndex) {
         case 0:
           page01();
           break;
         case 1:
           page02();
+          break;
+        case 2:
+          page03();
+          break;
+        case 3:
+          page04();
           break;
         default:
       }
@@ -103,14 +119,6 @@ $(function () {
     console.log('pageIndex = %d, posTop = %d', pageIndex, posTop);
     
     $html.animate({ scrollTop: posTop });
-
-     // 1페이지에서만 스크롤 제한
-    if (pageIndex === 0 && isScrolling) return;
-
-    // page01에서만 애니메이션 중엔 스크롤 막기
-    if (pageIndex === 0) {
-      isScrolling = true;
-    }
   }, {passive: false});
 
   window.addEventListener('resize', function () {
@@ -120,7 +128,7 @@ $(function () {
     // $html.animate({scrollTop: posTop}, 200);
     $html.animate({ scrollTop: 0}, 10);
   });
-
+  
   // ★★ function ★★ //
   function page01 () {
     // Page_01: 동작(1)
@@ -140,7 +148,7 @@ $(function () {
         height: 15,
       }, circleTime)
         .fadeOut(200)
-    }, 3000);
+    }, 1500);
 
     // orangeLine
     window.setTimeout(function () {
@@ -157,7 +165,7 @@ $(function () {
         }, lineTime)
           .fadeOut(150);
       });
-    }, 4500);
+    }, 3000);
 
     // orangeFace
     window.setTimeout(function() {
@@ -173,11 +181,11 @@ $(function () {
         $(this).css({
           transitionDuration: '550ms',
           backgroundColor: '#ffffff'
-          // backgroundColor는 animate가 적용되지 않으므로 animate 효과를 이요하고 싶으면 css에 객체 리터럴을 사용해서 transition을 적용한다 !
+          // backgroundColor는 animate가 적용되지 않으므로 animate 효과를 사용하고 싶으면 css에 객체 리터럴을 사용해서 transition을 적용한다 !
         });
       });
 
-    }, 8000);
+    }, 6500);
 
     // 동작(1) 요소 숨기기
     window.setTimeout(function () {
@@ -185,7 +193,7 @@ $(function () {
       $p1_motion01.css({
         opacity: 0
       });
-    }, 11000)
+    }, 9000)
 
     // Page_01: 동작(2)
     window.setTimeout(function () {
@@ -193,21 +201,21 @@ $(function () {
         top: 0,
         opacity: 1
       }, 400);
-    }, 11000);
+    }, 9000);
 
     window.setTimeout(function () {
       $('#p1_motion02 > div > div:first-child > p:nth-child(2)').animate({
         top: 0,
         opacity: 1
       }, 300);
-    }, 12000);
+    }, 9500);
 
     window.setTimeout(function () {
       $('#p1_motion02 > div > h1').animate({
         top: 0,
         opacity: 1
       }, 500);
-    }, 13000);
+    }, 10000);
 
     window.setTimeout(function () {
       $('#p1_motion02 > div > ul').animate({
@@ -228,7 +236,7 @@ $(function () {
           top: 47.6 + '%'
         }, 600);
       });
-    }, 15000);
+    }, 10500);
 
     // orangeThinLine
     window.setTimeout(function () {
@@ -236,8 +244,8 @@ $(function () {
 
       $orangeThinLine.animate({
         height: 150
-      }, 800);
-    }, 16500);
+      }, 600);
+    }, 12000);
 
     // orangeRectangle
     window.setTimeout(function () {
@@ -245,12 +253,8 @@ $(function () {
 
       $orangeRectangle.animate({
         width: 200
-      }, 1000);
-    }, 17500);
-
-    setTimeout(() => {
-      isScrolling = false;
-    }, 20500);
+      }, 800);
+    }, 13000);
   }
   
   // Page_02 동작

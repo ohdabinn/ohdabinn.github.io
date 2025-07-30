@@ -1,4 +1,44 @@
 $(function () {
+  let isScrolling = false;
+
+  // 키보드 방향키 스크롤 막기
+  $(document).keydown(function(event){
+    if(event.keyCode == 38 || event.keyCode == 40){
+      event.preventDefault();
+    }
+  });
+
+  // 마우스 우클릭/드래그 방지
+  function control_mouse(){
+    // $(document).bind("contextmenu", function(e){return false;}); // 우클릭 금지 (필요 시 주석 해제)
+    $(document).bind('selectstart', function() {return false;}); // 드래그 금지
+  }
+  $(document).ready(function(){
+    control_mouse();
+  });
+
+  // page01 : 범식품
+  const page01Thumbnails = document.querySelectorAll('.page01_bottom ul li img');
+  const page01MainImage = document.querySelector('.page01_middle > div:nth-child(2) > img');
+
+  page01Thumbnails.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const newSrc = thumb.getAttribute('src');
+      page01MainImage.setAttribute('src', newSrc);
+    });
+  });
+
+  // page02 : 철쭉이
+  const page02Thumbnails = document.querySelectorAll('.page02_bottom ul li img');
+  const page02MainImage = document.querySelector('.page02_middle > div:nth-child(1) > img');
+
+  page02Thumbnails.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const newSrc = thumb.getAttribute('src');
+      page02MainImage.setAttribute('src', newSrc);
+    });
+  });
+
   // page03 : 맥날x런베, 씽칭공원
   const button01 = document.getElementById("button01");
   const button02 = document.getElementById("button02");
@@ -44,6 +84,7 @@ $(function () {
     }, 1000);
   });
 
+  // page05 : ETC.
   const imageItems = document.querySelectorAll('.image-item');
   const overlay = document.querySelector('.overlay');
   const overlayTitle = document.getElementById('overlay-title');
@@ -100,7 +141,7 @@ $(function () {
     overlay.classList.remove('show');
   });
 
-  // 무한 스크롤을 위해 이미지 클론 후 연결
+  // 무한 스크롤
   function cloneImagesForInfiniteScroll(columnSelector) {
     const column = document.querySelector(columnSelector);
     const cloned = column.cloneNode(true);

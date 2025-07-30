@@ -234,17 +234,17 @@ body {
 }
 
 #p1_motion01 > ul > li:nth-child(1) {
-  animation: textUp 1s ease forwards;
+  animation: textUp 0.8s ease forwards;
 }
 
 #p1_motion01 > ul > li:nth-child(2) {
-  animation: textUp 1s ease forwards;
-  animation-delay: 1s;
+  animation: textUp 0.8s ease forwards;
+  animation-delay: 0.5s;
 }
 
 #p1_motion01 > ul > li:nth-child(3) {
-  animation: textUp 1s ease forwards;
-  animation-delay: 2s;
+  animation: textUp 0.8s ease forwards;
+  animation-delay: 1s;
 }
 
 /* p1_동작 #01에 나타나는 도형 스타일 미리 설정 */
