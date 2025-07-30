@@ -68,7 +68,7 @@ $(function () {
       console.log('scroll down')
 
       if (pageIndex >= 6) {
-        // 1page[0], ★2page[1], 3page[2], ★4page[3], 5page[4], footer[5]
+        // 1page[0], ★2page[1], 3page[2], footer[3]
         $window.scrollTop(windowHeight * 6);
       }
 
